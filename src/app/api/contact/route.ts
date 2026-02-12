@@ -2,6 +2,7 @@ import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const resendApiKey = process.env.RESEND_API_KEY;
 
 export async function POST(request: Request) {
   try {
@@ -18,18 +19,18 @@ export async function POST(request: Request) {
     const resendFromEmail = process.env.RESEND_FROM_EMAIL;
     const resendToEmail = process.env.RESEND_TO_EMAIL;
 
-    if (!resendFromEmail || !resendToEmail) {
+    if (!resendApiKey || !resendFromEmail || !resendToEmail) {
       return NextResponse.json(
         {
           message:
-            "Faltan variables de entorno para email (RESEND_FROM_EMAIL y RESEND_TO_EMAIL)",
+            "Faltan variables de entorno para email (RESEND_API_KEY, RESEND_FROM_EMAIL y RESEND_TO_EMAIL)",
         },
         { status: 500 }
       );
     }
 
     // Enviar email usando Resend
-    const data = await resend.emails.send({
+    const result = await resend.emails.send({
       from: resendFromEmail,
       to: [resendToEmail],
       replyTo: email, // Email del cliente para responder
@@ -141,7 +142,19 @@ export async function POST(request: Request) {
       `,
     });
 
-    return NextResponse.json({ success: true, data });
+    if (result.error) {
+      console.error("Resend error:", result.error);
+      return NextResponse.json(
+        {
+          message:
+            result.error.message ||
+            "Resend rechazó el envío. Verificá remitente y dominio.",
+        },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ success: true, data: result.data });
   } catch (error) {
     console.error("Error enviando email:", error);
     return NextResponse.json(

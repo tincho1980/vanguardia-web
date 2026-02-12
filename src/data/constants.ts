@@ -1,30 +1,3 @@
-export const SERVICES = [
-  {
-    id: 1,
-    title: "LA ENTREVISTA",
-    description: "Te brindamos una entrevista para conocerte y darle forma a una experiencia hecha a tu medida.",
-    img: "https://placehold.co/600x800/111111/972528?text=ENTREVISTA"
-  },
-  {
-    id: 2,
-    title: "DIRECCIÓN CREATIVA",
-    description: "Co-producimos un guion y un personaje. Tablero de referencias, estilismo y makeup.",
-    img: "https://placehold.co/600x800/111111/972528?text=CREATIVA"
-  },
-  {
-    id: 3,
-    title: "EL RITUAL",
-    description: "Locaciones exclusivas (Casonas, Ruinas). Ambiente cuidado, aromas y catering.",
-    img: "https://placehold.co/600x800/111111/972528?text=RITUAL"
-  },
-  {
-    id: 4,
-    title: "EL LEGADO",
-    description: "Revelado de autor. Fotolibros, Cuadros y Gigantografías.",
-    img: "https://placehold.co/600x800/111111/972528?text=LEGADO"
-  }
-];
-
 // Importar todas las fotos del portfolio
 import img1 from "@/assets/portfolio/1.jpg";
 import img2 from "@/assets/portfolio/2.jpg";
@@ -78,6 +51,33 @@ export const GALLERY_IMAGES = [
   img16, img17, img18, img19, img20,
   img21, img22, img23, img24, img25,
   img26, img27, img28, img29, img30
+];
+
+export const SERVICES = [
+  {
+    id: 1,
+    title: "LA ENTREVISTA",
+    description: "Te brindamos una entrevista para conocerte y darle forma a una experiencia hecha a tu medida.",
+    img: img5
+  },
+  {
+    id: 2,
+    title: "DIRECCIÓN CREATIVA",
+    description: "Co-producimos un guion y un personaje. Tablero de referencias, estilismo y makeup.",
+    img: img12
+  },
+  {
+    id: 3,
+    title: "EL RITUAL",
+    description: "Locaciones exclusivas (Casonas, Ruinas). Ambiente cuidado, aromas y catering.",
+    img: img18
+  },
+  {
+    id: 4,
+    title: "EL LEGADO",
+    description: "Revelado de autor. Fotolibros, Cuadros y Gigantografías.",
+    img: img25
+  }
 ];
 
 export const GALLERY_ITEMS = [
