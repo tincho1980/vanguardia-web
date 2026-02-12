@@ -15,10 +15,23 @@ export async function POST(request: Request) {
       );
     }
 
+    const resendFromEmail = process.env.RESEND_FROM_EMAIL;
+    const resendToEmail = process.env.RESEND_TO_EMAIL;
+
+    if (!resendFromEmail || !resendToEmail) {
+      return NextResponse.json(
+        {
+          message:
+            "Faltan variables de entorno para email (RESEND_FROM_EMAIL y RESEND_TO_EMAIL)",
+        },
+        { status: 500 }
+      );
+    }
+
     // Enviar email usando Resend
     const data = await resend.emails.send({
-      from: "Vanguardia Web <onboarding@resend.dev>", // Cambiar por tu dominio verificado
-      to: ["vanguardiabynegrovski@gmail.com"], // Email destino
+      from: resendFromEmail,
+      to: [resendToEmail],
       replyTo: email, // Email del cliente para responder
       subject: `Nuevo mensaje de ${name} - Vanguardia Web`,
       html: `
