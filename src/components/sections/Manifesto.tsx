@@ -57,7 +57,11 @@ export default function Manifesto() {
   };
 
   return (
-    <section className="manifesto-section pt-32 pb-16 md:pt-64 md:pb-32 relative z-10 bg-vanguard-black overflow-hidden flex flex-col gap-8 md:gap-16">
+    <section
+      id="manifiesto"
+      aria-labelledby="manifiesto-heading"
+      className="manifesto-section pt-32 pb-16 md:pt-64 md:pb-32 relative z-10 bg-vanguard-black overflow-hidden flex flex-col gap-8 md:gap-16"
+    >
       <div className="manifesto-row whitespace-nowrap select-none">
         <h2 className="text-4xl md:text-7xl font-black text-gray-700 opacity-50 uppercase tracking-tighter">
           No Cosifica. No Cosifica. No Cosifica. No Cosifica.
@@ -74,7 +78,10 @@ export default function Manifesto() {
         </h2>
       </div>
       <div className="manifesto-row static-row text-center px-4 mt-12">
-        <h2 className="text-5xl md:text-8xl font-black text-vanguard-red uppercase tracking-tighter shadow-red-glow mb-12">
+        <h2
+          id="manifiesto-heading"
+          className="text-5xl md:text-8xl font-black text-vanguard-red uppercase tracking-tighter shadow-red-glow mb-12"
+        >
           Humaniza y Enaltece.
         </h2>
         <p className="max-w-3xl mx-auto text-base md:text-lg font-light leading-relaxed tracking-wide text-gray-400 mb-12">

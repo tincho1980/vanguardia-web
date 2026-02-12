@@ -11,8 +11,72 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "VANGUARDIA by Negrovski",
-  description: "Arte Boudoir de Alta Gama. Enemigos radicales del arte mediocre.",
+  metadataBase: new URL("https://vanguardiabynegrovski.com"),
+  title: {
+    default:
+      "Vanguardia by Negrovski | Arte Boudoir Conceptual de Alta Gama",
+    template: "%s | Vanguardia by Negrovski",
+  },
+  description:
+    "Equipo interdisciplinario de artistas profesionales en boudoir conceptual. Experiencias de alta gama con metodo estructurado en entrevista, preproduccion, produccion y curaduria artistica.",
+  applicationName: "Vanguardia by Negrovski",
+  keywords: [
+    "fotografia boudoir",
+    "arte boudoir conceptual",
+    "boudoir argentina",
+    "experiencia boudoir alta gama",
+    "equipo interdisciplinario de artistas",
+    "direccion creativa boudoir",
+    "preproduccion y curaduria artistica",
+    "book boudoir profesional",
+    "fotografo boudoir la plata",
+    "fotografo boudoir buenos aires",
+    "sesion boudoir premium personalizada",
+    "fotografia artistica transformadora",
+    "vanguardia by negrovski",
+    "negrovski fotografo filmmaker",
+  ],
+  alternates: {
+    canonical: "/",
+    languages: {
+      "es-AR": "/",
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    url: "/",
+    siteName: "Vanguardia by Negrovski",
+    title: "Vanguardia by Negrovski | Arte Boudoir Conceptual de Alta Gama",
+    description:
+      "Obras boudoir conceptuales con potencial transformador, direccion creativa y produccion integral de alto valor artistico.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Vanguardia by Negrovski - Fotografia Boudoir de Alta Gama",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vanguardia by Negrovski | Arte Boudoir Conceptual de Alta Gama",
+    description:
+      "Experiencia boudoir de alta gama con metodo estructurado y direccion creativa interdisciplinaria.",
+    images: ["/twitter-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 // JSON-LD Schema.org para SEO de marca de lujo (ProfessionalService)
@@ -20,10 +84,16 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Vanguardia by Negrovski",
+  slogan: "Enemigos radicales del arte mediocre.",
   description:
-    "Fotografía Boudoir de alta gama. Enemigos radicales del arte mediocre. Revolución estética y empoderamiento.",
+    "Equipo interdisciplinario de artistas profesionales especializado en arte boudoir conceptual de alta gama, con metodo estructurado, direccion creativa y curaduria artistica.",
   url: "https://vanguardiabynegrovski.com",
-  image: "https://vanguardiabynegrovski.com/og-image.jpg",
+  image: "https://vanguardiabynegrovski.com/opengraph-image",
+  founder: {
+    "@type": "Person",
+    name: "Alexis (Negrovski)",
+    jobTitle: "Director Creativo, Fotografo y Filmmaker",
+  },
   priceRange: "$$$",
   address: {
     "@type": "PostalAddress",
@@ -38,7 +108,47 @@ const jsonLd = {
     "@type": "Country",
     name: "Argentina",
   },
-  serviceType: ["Fotografía Boudoir", "Dirección Creativa", "Arte Conceptual"],
+  serviceType: [
+    "Fotografia Boudoir",
+    "Direccion Creativa",
+    "Arte Conceptual",
+    "Curaduria Artistica",
+    "Produccion Audiovisual",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Metodo Vanguardia",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Entrevista Inicial y Cotizacion Detallada",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Preproduccion Conceptual y Direccion Creativa",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Produccion de Sesion Boudoir de Alta Gama",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Postproduccion y Curaduria Artistica",
+        },
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

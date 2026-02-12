@@ -59,7 +59,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="hero-section relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <section
+      id="inicio"
+      className="hero-section relative h-screen w-full flex items-center justify-center overflow-hidden"
+    >
       {/* Dark Background con Ken Burns effect */}
       <div className="absolute inset-0 z-0 opacity-40 select-none pointer-events-none overflow-hidden">
         <Image

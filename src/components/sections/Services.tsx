@@ -70,10 +70,17 @@ export default function Services() {
   }, []);
 
   return (
-    <section className="services-section relative z-10 bg-vanguard-black min-h-screen">
+    <section
+      id="servicios-boudoir"
+      aria-labelledby="services-heading"
+      className="services-section relative z-10 bg-vanguard-black min-h-screen"
+    >
       <div className="container mx-auto px-4 lg:flex">
         {/* Left: Scrollable Text */}
         <div className="lg:w-1/2 py-24 flex flex-col gap-[25vh]">
+          <h2 id="services-heading" className="sr-only">
+            Servicios de fotografia boudoir
+          </h2>
           {SERVICES.map((service, index) => (
             <div
               key={service.id}

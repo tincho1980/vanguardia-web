@@ -9,6 +9,8 @@ import type { StaticImageData } from "next/image";
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | StaticImageData | null>(null);
+  const getGalleryAlt = (position: number) =>
+    `Portfolio boudoir Vanguardia by Negrovski - fotografia artistica ${position} en estilo cinematografico`;
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -69,9 +71,16 @@ export default function Gallery() {
 
   return (
     <>
-      <section className="gallery-section pt-32 pb-16 px-4 md:px-12 bg-vanguard-black relative z-10">
+      <section
+        id="portfolio-boudoir"
+        aria-labelledby="gallery-heading"
+        className="gallery-section pt-32 pb-16 px-4 md:px-12 bg-vanguard-black relative z-10"
+      >
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-black mb-24 text-center uppercase tracking-tighter text-vanguard-white">
+          <h2
+            id="gallery-heading"
+            className="text-4xl md:text-6xl font-black mb-24 text-center uppercase tracking-tighter text-vanguard-white"
+          >
             Manifiesto Visual
           </h2>
 
@@ -90,7 +99,7 @@ export default function Gallery() {
                   >
                     <Image
                       src={item.content}
-                      alt="Fotografía Boudoir Vanguardia, estilo cinematográfico low-key"
+                      alt={getGalleryAlt(i + 1)}
                       className="w-full h-auto grayscale group-hover:grayscale-0 group-hover:scale-[1.04] transition-all duration-700"
                       placeholder="blur"
                     />

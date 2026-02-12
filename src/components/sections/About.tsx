@@ -50,7 +50,11 @@ export default function About() {
   }, []);
 
   return (
-    <section className="about-section relative z-10 bg-vanguard-black min-h-screen pt-12 pb-24 md:py-0">
+    <section
+      id="sobre-vanguardia"
+      aria-labelledby="about-heading"
+      className="about-section relative z-10 bg-vanguard-black min-h-screen pt-12 pb-24 md:py-0"
+    >
       <div className="container mx-auto px-4 lg:flex lg:items-center lg:min-h-screen">
         {/* Izquierda: Imagen sticky */}
         <div className="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 flex items-center justify-center p-8 md:p-12">
@@ -75,7 +79,10 @@ export default function About() {
             El Visionario
           </span>
           
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase mb-8 tracking-tighter text-vanguard-white leading-none">
+          <h2
+            id="about-heading"
+            className="text-4xl md:text-6xl lg:text-7xl font-black uppercase mb-8 tracking-tighter text-vanguard-white leading-none"
+          >
             NEGROVSKI
           </h2>
 

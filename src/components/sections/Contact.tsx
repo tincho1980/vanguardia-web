@@ -3,14 +3,21 @@ import DirectContact from "@/components/ui/DirectContact";
 
 export default function Contact() {
   return (
-    <section className="contact-section pt-16 pb-32 bg-vanguard-black relative border-t border-gray-900 z-10">
+    <section
+      id="contacto"
+      aria-labelledby="contact-heading"
+      className="contact-section pt-16 pb-32 bg-vanguard-black relative border-t border-gray-900 z-10"
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-20">
           <p className="text-vanguard-red tracking-widest mb-8 text-sm uppercase font-bold">
             Únete a la Vanguardia
           </p>
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase mb-8 leading-tight text-vanguard-white">
+          <h2
+            id="contact-heading"
+            className="text-5xl md:text-7xl lg:text-8xl font-black uppercase mb-8 leading-tight text-vanguard-white"
+          >
             ¿Te Atreves a<br /> dar el paso?
           </h2>
           <p className="text-gray-400 font-light tracking-wide max-w-2xl mx-auto mt-6">
