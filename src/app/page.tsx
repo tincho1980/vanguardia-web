@@ -1,5 +1,6 @@
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import CustomCursor from "@/components/ui/CustomCursor";
+import BackToTopButton from "@/components/ui/BackToTopButton";
 import Preloader from "@/components/ui/Preloader";
 import Hero from "@/components/sections/Hero";
 import Manifesto from "@/components/sections/Manifesto";
@@ -14,6 +15,7 @@ export default function Home() {
       <main className="relative w-full min-h-screen bg-vanguard-black text-vanguard-white selection:bg-vanguard-red selection:text-white overflow-x-hidden">
         <CustomCursor />
         <Preloader />
+        <BackToTopButton />
         
         <Hero />
         <Manifesto />
