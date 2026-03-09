@@ -32,16 +32,16 @@ import img30 from "@/assets/portfolio/30.jpg";
 
 // Frases para intercalar en la galería
 export const GALLERY_PHRASES = [
-  "VANGUARDIA ES LA REVOLUCIÓN",
-  "SOMOS AMANTES DE LO EXTRAORDINARIO",
-  "SUBVERTIMOS MALAS PRAXIS",
-  "ENEMIGOS RADICALES DEL ARTE MEDIOCRE Y VULGAR",
-  "NO COSIFICA. NO DEVALÚA.",
-  "HUMANIZA. ENALTECE.",
-  "HISTORIAS SUBLIMES",
-  "SE INSPIRA EN TU SINGULARIDAD",
-  "LO LEGENDARIO DE TU SEMBLANTE",
-  "TENEMOS EL FOCO EN TIEMPOS FUTUROS"
+  "Amantes de lo Extraordinario.",
+  "Visionarios de Historias Sublimes.",
+  "Diseñadores de Experiencias de Alta Gama.",
+  "Sensibilidad. Imaginación. Competencia.",
+  "Sutileza. Elegancia. Épica.",
+  "Apologetas de Rituales de Amor Propio.",
+  "Con el Foco en Tiempos Futuros.",
+  "Revelaremos lo legendario de tu semblante.",
+  "Reluciente como nunca te habías visto.",
+  "Escenas de un Film de Ciencia Ficción."
 ];
 
 export const GALLERY_IMAGES = [
@@ -57,26 +57,26 @@ export const SERVICES = [
   {
     id: 1,
     title: "LA ENTREVISTA",
-    description: "Te brindamos una entrevista para conocerte y darle forma a una experiencia hecha a tu medida.",
-    img: img5
+    description: "Te brindamos una entrevista para que conozcas todo sobre Vanguardia y diseñemos una experiencia Boudoir a la altura de tus ambiciones.",
+    img: "entrevista"
   },
   {
     id: 2,
     title: "DIRECCIÓN CREATIVA",
-    description: "Co-producimos un guion y un personaje. Tablero de referencias, estilismo y makeup.",
-    img: img12
+    description: "Planificamos juntos tu puesta en escena de principio a fin: personaje, guión, escenografía y referencias (colores, iluminación, estilismo y maquillaje, outfit, planos y poses).",
+    img: "direccion_creativa"
   },
   {
     id: 3,
     title: "EL RITUAL",
-    description: "Locaciones exclusivas (Casonas, Ruinas). Ambiente cuidado, aromas y catering.",
-    img: img18
+    description: "3 horas de Shooting. Dirección de poses. Retoques de belleza. Ambientes aromatizados. Música inspiradora. Mesa de bocados y bebidas.",
+    img: "ritual"
   },
   {
     id: 4,
     title: "EL LEGADO",
-    description: "Revelado de autor. Fotolibros, Cuadros y Gigantografías.",
-    img: img25
+    description: "Revelado de Autor. Album de postales con tu sello distintivo. Impresiones de Fotolibros, Cuadros y Gigantografías a demanda.",
+    img: "legado"
   }
 ];
 

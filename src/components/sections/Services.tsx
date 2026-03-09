@@ -1,14 +1,25 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
-import type { StaticImageData } from "next/image";
+import { CldImage } from "next-cloudinary";
 import { SERVICES } from "@/data/constants";
 import VanguardButton from "@/components/ui/VanguardButton";
+import ImageModal from "@/components/ui/ImageModal";
+
+const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+
+function preloadCloudinaryImage(publicId: string) {
+  if (typeof window === "undefined" || !CLOUD_NAME) return;
+  const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/q_auto,f_auto,w_2000/${publicId}`;
+  const img = new window.Image();
+  img.src = url;
+}
 
 export default function Services() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   const whatsappMessage = encodeURIComponent(
     "Hola! Quiero informacion sobre la experiencia Vanguardia."
   );
@@ -19,6 +30,22 @@ export default function Services() {
       gsap.registerPlugin(ScrollTrigger);
 
       const mm = gsap.matchMedia();
+
+      // Parallax en mobile/tablet
+      mm.add("(max-width: 1023px)", () => {
+        SERVICES.forEach((_, index) => {
+          gsap.to(`.service-image-${index}`, {
+            yPercent: 20,
+            ease: "none",
+            scrollTrigger: {
+              trigger: `.service-item-${index}`,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+          });
+        });
+      });
 
       mm.add("(min-width: 1024px)", () => {
         // Efecto parallax para cada imagen
@@ -85,7 +112,7 @@ export default function Services() {
             id="services-heading" 
             className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-vanguard-white mb-4"
           >
-            El proceso
+            El Dispositivo EN ACCIÓN
           </h2>
           <div className="w-24 h-1 bg-vanguard-red mx-auto"></div>
         </div>
@@ -116,21 +143,26 @@ export default function Services() {
 
               {/* Imagen con efecto parallax */}
               <div className={`${index % 2 === 0 ? "" : "lg:col-start-1 lg:row-start-1"} relative h-[60vh] lg:h-[70vh] overflow-hidden`}>
-                <div className="relative w-full h-full">
+                <button
+                  type="button"
+                  className="hover-trigger relative w-full h-full"
+                  onClick={() => setSelectedImage(service.img)}
+                  onMouseEnter={() => preloadCloudinaryImage(service.img)}
+                  aria-label={`Ver ${service.title} en tamaño completo`}
+                >
                   <div className={`service-image-${index} absolute inset-0 -top-[15%] -bottom-[15%]`}>
-                    <Image
+                    <CldImage
                       src={service.img}
                       alt={`${service.title} - Vanguardia Boudoir`}
                       fill
-                      className="object-cover grayscale"
+                      className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      placeholder="blur"
                     />
                   </div>
                   {/* Overlay decorativo */}
                   <div className="absolute inset-0 bg-linear-to-t from-vanguard-black/60 via-transparent to-vanguard-black/20 pointer-events-none"></div>
                   <div className="absolute inset-0 border border-vanguard-red/20 pointer-events-none"></div>
-                </div>
+                </button>
               </div>
             </div>
           ))}
@@ -157,6 +189,14 @@ export default function Services() {
         </div>
       </div>
     </section>
+
+      {selectedImage && (
+        <ImageModal
+          src={selectedImage}
+          alt={`${SERVICES.find((s) => s.img === selectedImage)?.title ?? "Servicio"} - Vanguardia Boudoir`}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
     </>
   );
 }

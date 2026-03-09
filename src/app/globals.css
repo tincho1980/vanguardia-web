@@ -45,4 +45,26 @@
   .animate-fade-in {
     animation: fade-in 0.3s ease-out forwards;
   }
+
+  @keyframes heartbeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(1.2);
+    }
+    28% {
+      transform: scale(1);
+    }
+    42% {
+      transform: scale(1.12);
+    }
+    70% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-heartbeat {
+    animation: heartbeat 1.6s ease-in-out infinite;
+  }
 }

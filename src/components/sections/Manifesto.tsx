@@ -8,40 +8,35 @@ export default function Manifesto() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.registerPlugin(ScrollTrigger);
-
       const mm = gsap.matchMedia();
 
       const animateRows = (distance: number, scrub: number) => {
-        const manifestoRows = gsap.utils.toArray<HTMLElement>(".manifesto-row");
-        manifestoRows.forEach((row, i) => {
-          const direction = i % 2 === 0 ? -1 : 1;
-          if (!row.classList.contains("static-row")) {
-            gsap.fromTo(
-              row,
-              { xPercent: direction * -distance },
-              {
-                xPercent: direction * distance,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: ".manifesto-section",
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub,
-                },
-              }
-            );
-          }
+        const manifestoTracks = gsap.utils.toArray<HTMLElement>(".manifesto-track");
+        manifestoTracks.forEach((track, i) => {
+          const goesLeft = i % 2 === 0;
+          gsap.fromTo(
+            track,
+            { xPercent: goesLeft ? 0 : -25 },
+            {
+              xPercent: goesLeft ? -distance : -25 + distance,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".manifesto-section",
+                start: "top bottom",
+                end: "bottom top",
+                scrub,
+              },
+            }
+          );
         });
       };
 
-      // Desktop
       mm.add("(min-width: 768px)", () => {
-        animateRows(30, 1);
+        animateRows(6, 5);
       });
 
-      // Mobile (más liviano)
       mm.add("(max-width: 767px)", () => {
-        animateRows(16, 0.6);
+        animateRows(6, 1);
       });
 
       return () => mm.revert();
@@ -51,10 +46,31 @@ export default function Manifesto() {
   }, []);
 
   const handlePhilosophyClick = () => {
-    const driveDownloadUrl =
-      "https://drive.google.com/uc?export=download&id=1W6XWySEL3k8wK24p5OrKnpeIDR_11BUj";
-    window.open(driveDownloadUrl, "_blank", "noopener,noreferrer");
+    const pdfUrl = "/assets/Cosmovisi%C3%B3n-Vanguardia-Boudoir.pdf";
+    window.open(pdfUrl, "_blank", "noopener,noreferrer");
   };
+
+  const loopCount = 4;
+  const rowContent = [
+    {
+      text: "Vanguardia.",
+      repeat: 14,
+      className:
+        "text-4xl md:text-7xl font-black text-gray-700 opacity-50 uppercase tracking-tighter pr-6",
+    },
+    {
+      text: "Es la revolución.",
+      repeat: 10,
+      className:
+        "text-4xl md:text-7xl font-black text-gray-600 uppercase tracking-tighter pr-6",
+    },
+    {
+      text: "Del Arte Boudoir.",
+      repeat: 10,
+      className:
+        "text-4xl md:text-7xl font-black text-gray-400 uppercase tracking-tighter pr-6",
+    },
+  ];
 
   return (
     <section
@@ -62,38 +78,35 @@ export default function Manifesto() {
       aria-labelledby="manifiesto-heading"
       className="manifesto-section pt-32 pb-16 md:pt-64 md:pb-32 relative z-10 bg-vanguard-black overflow-hidden flex flex-col gap-8 md:gap-16"
     >
-      <div className="manifesto-row whitespace-nowrap select-none">
-        <h2 className="text-4xl md:text-7xl font-black text-gray-700 opacity-50 uppercase tracking-tighter">
-          No Cosifica. No Cosifica. No Cosifica. No Cosifica.
-        </h2>
-      </div>
-      <div className="manifesto-row whitespace-nowrap flex justify-end select-none">
-        <h2 className="text-4xl md:text-7xl font-black text-gray-600 uppercase tracking-tighter">
-          No Devalúa. No Devalúa. No Devalúa. No Devalúa.
-        </h2>
-      </div>
-      <div className="manifesto-row whitespace-nowrap select-none">
-        <h2 className="text-4xl md:text-7xl font-black text-gray-400 uppercase tracking-tighter">
-          No Estandariza. No Estandariza. No Estandariza.
-        </h2>
-      </div>
+      {rowContent.map((row, rowIndex) => (
+        <div key={row.text} className="manifesto-row overflow-hidden whitespace-nowrap select-none">
+          <div className="manifesto-track inline-flex min-w-max will-change-transform">
+            {Array.from({ length: loopCount }).map((_, i) => (
+              <h2 key={`${rowIndex}-${i}`} className={row.className}>
+                {`${row.text} `.repeat(row.repeat)}
+              </h2>
+            ))}
+          </div>
+        </div>
+      ))}
       <div className="manifesto-row static-row text-center px-4 mt-12">
+        <p className="max-w-3xl mx-auto text-base md:text-lg font-light leading-relaxed tracking-wide text-gray-400 mb-12">
+            Nuestro Boudoir NO cosifica. NO devalúa. NO estandariza.
+        </p>
         <h2
           id="manifiesto-heading"
           className="text-5xl md:text-8xl font-black text-vanguard-red uppercase tracking-tighter shadow-red-glow mb-12"
         >
-          Humaniza y Enaltece.
+          Humaniza, Enaltece <br />
+          y <br />
+          Transforma.
         </h2>
-        <p className="max-w-3xl mx-auto text-base md:text-lg font-light leading-relaxed tracking-wide text-gray-400 mb-12">
-          Vanguardia es la revolución que nadie se atrevió a proclamar en el
-          universo del arte Boudoir. Enemigos radicales del arte mediocre.
-        </p>
         <button
           onClick={handlePhilosophyClick}
           className="hover-trigger relative px-8 py-4 border border-vanguard-red text-white text-sm tracking-widest uppercase transition-all duration-300 hover:bg-vanguard-red hover:text-black font-bold group overflow-hidden inline-block"
         >
           <span className="relative z-10 pointer-events-none">
-            Nuestra Filosofía
+            Nuestra Cosmovisión
           </span>
           <div className="absolute inset-0 bg-vanguard-red transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out z-0 pointer-events-none"></div>
         </button>

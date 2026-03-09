@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { GALLERY_ITEMS } from "@/data/constants";
 import type { StaticImageData } from "next/image";
+import ImageModal from "@/components/ui/ImageModal";
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | StaticImageData | null>(null);
@@ -24,15 +25,15 @@ export default function Gallery() {
         galleryItems.forEach((item) => {
           gsap.fromTo(
             item,
-            { opacity: 0, y: 100 },
+            { opacity: 0, y: 30 },
             {
               opacity: 1,
               y: 0,
-              duration: 1,
+              duration: 0.9,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: item,
-                start: "top 90%",
+                start: "top 92%",
               },
               onComplete: () => {
                 const border = item.querySelector(".gallery-border");
@@ -84,11 +85,11 @@ export default function Gallery() {
             Manifiesto Visual
           </h2>
 
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 overflow-clip">
             {GALLERY_ITEMS.map((item, i) => (
               <div
                 key={i}
-                className={`gallery-item ${item.type === "phrase" ? "" : "hover-trigger"} relative group break-inside-avoid`}
+                className={`gallery-item ${item.type === "phrase" ? "" : "hover-trigger"} relative group break-inside-avoid mb-8`}
               >
                 {item.type === "image" ? (
                   <button
@@ -100,7 +101,7 @@ export default function Gallery() {
                     <Image
                       src={item.content}
                       alt={getGalleryAlt(i + 1)}
-                      className="w-full h-auto grayscale group-hover:grayscale-0 group-hover:scale-[1.04] transition-all duration-700"
+                      className="w-full h-auto grayscale-0 md:grayscale md:group-hover:grayscale-0 md:group-hover:scale-[1.04] transition-all duration-700"
                       placeholder="blur"
                     />
                     {/* Animated Red Border */}
@@ -120,33 +121,11 @@ export default function Gallery() {
       </section>
 
       {selectedImage && (
-        <div
-          className="fixed inset-0 z-9998 bg-black/90 flex items-center justify-center p-4 md:p-8"
-          onClick={() => setSelectedImage(null)}
-        >
-          <button
-            type="button"
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-vanguard-red bg-vanguard-black/80 text-vanguard-red text-3xl md:text-4xl font-black leading-none hover:text-white hover:border-white transition-colors duration-300 flex items-center justify-center"
-            aria-label="Cerrar modal"
-          >
-            ×
-          </button>
-
-          <div
-            className="relative max-w-full max-h-full flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Image
-              src={selectedImage}
-              alt="Imagen de portfolio en tamaño completo"
-              width={2000}
-              height={3000}
-              className="w-auto h-auto max-w-[calc(100vw-2rem)] max-h-[calc(100vh-2rem)] md:max-w-[calc(100vw-4rem)] md:max-h-[calc(100vh-4rem)] object-contain"
-              priority
-            />
-          </div>
-        </div>
+        <ImageModal
+          src={selectedImage}
+          alt="Imagen de portfolio en tamaño completo"
+          onClose={() => setSelectedImage(null)}
+        />
       )}
     </>
   );
