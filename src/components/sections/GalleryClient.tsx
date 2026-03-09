@@ -80,7 +80,7 @@ export default function GalleryClient({ items }: GalleryClientProps) {
 
   return (
     <>
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-8 overflow-clip">
+      <div className="columns-1 md:columns-3 gap-8 overflow-clip">
         {items.map((item, i) => (
           <div
             key={i}

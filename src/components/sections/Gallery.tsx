@@ -22,6 +22,7 @@ function buildGalleryItems(
     if ((i + 1) % interval === 0 && phraseIndex < phrases.length) {
       items.push({ type: "phrase", content: phrases[phraseIndex++] });
     }
+
   });
 
   return items;

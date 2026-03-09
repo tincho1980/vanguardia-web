@@ -19,7 +19,7 @@ async function fetchGalleryImages(): Promise<GalleryImage[]> {
   const result = await cloudinary.search
     .expression("folder:gallery")
     .with_field("context")
-    .sort_by("created_at", "desc")
+    .sort_by("public_id", "asc")
     .max_results(100)
     .execute();
 
