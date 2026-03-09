@@ -8,12 +8,16 @@ import type { StaticImageData } from "next/image";
 interface ImageModalProps {
   src: string | StaticImageData;
   alt?: string;
+  width?: number;
+  height?: number;
   onClose: () => void;
 }
 
 export default function ImageModal({
   src,
   alt = "Imagen en tamaño completo",
+  width,
+  height,
   onClose,
 }: ImageModalProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -42,12 +46,21 @@ export default function ImageModal({
           </div>
         )}
 
-        {typeof src === "string" ? (
+        {typeof src === "string" && src.startsWith("https://") ? (
+          // URL completa de Cloudinary: servir el original sin transformaciones
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={src}
+            alt={alt}
+            className={`w-auto h-auto max-w-[calc(100vw-2rem)] max-h-[calc(100vh-2rem)] md:max-w-[calc(100vw-4rem)] md:max-h-[calc(100vh-4rem)] object-contain transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`}
+            onLoad={() => setIsLoading(false)}
+          />
+        ) : typeof src === "string" ? (
           <CldImage
             src={src}
             alt={alt}
-            width={2000}
-            height={3000}
+            width={width ?? 4000}
+            height={height ?? 6000}
             className={`w-auto h-auto max-w-[calc(100vw-2rem)] max-h-[calc(100vh-2rem)] md:max-w-[calc(100vw-4rem)] md:max-h-[calc(100vh-4rem)] object-contain transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`}
             priority
             onLoad={() => setIsLoading(false)}

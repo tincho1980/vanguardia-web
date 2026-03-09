@@ -4,9 +4,6 @@ import { useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const GOOGLE_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLScHQ3WFd-zHo-E1_wM25aG_lU_arKzZfnyHDHQ7aa0EOw5hiw/viewform?usp=header";
-
 export default function VanguardiaDistinta() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -32,6 +29,13 @@ export default function VanguardiaDistinta() {
     return () => ctx.revert();
   }, []);
 
+  const scrollToContactSection = () => {
+    const contactSection = document.getElementById("contacto");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="vanguardia-distinta"
@@ -40,7 +44,7 @@ export default function VanguardiaDistinta() {
     >
       <div className="container mx-auto px-6 max-w-3xl vanguardia-distinta-content">
         <span className="text-vanguard-red font-bold text-sm md:text-base tracking-widest uppercase block mb-6">
-          El Estudio
+          La Propuesta
         </span>
 
         <h2
@@ -105,18 +109,17 @@ export default function VanguardiaDistinta() {
           </p>
         </div>
 
-        <div className="pt-10">
-          <a
-            href={GOOGLE_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover-trigger relative inline-block px-8 py-4 border border-vanguard-red text-white text-sm tracking-widest uppercase transition-all duration-300 hover:text-black font-bold group overflow-hidden"
+        <div className="pt-10 text-center md:text-left">
+          <button
+            type="button"
+            onClick={scrollToContactSection}
+            className="hover-trigger relative mx-auto md:mx-0 px-5 sm:px-8 py-3.5 sm:py-4 border border-vanguard-red text-white text-[11px] sm:text-sm tracking-[0.14em] sm:tracking-widest uppercase leading-none whitespace-nowrap transition-all duration-300 hover:text-black font-bold group overflow-hidden inline-flex items-center justify-center"
           >
             <span className="relative z-10 pointer-events-none">
               Agendar Entrevista
             </span>
             <div className="absolute inset-0 bg-vanguard-red transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out z-0 pointer-events-none" />
-          </a>
+          </button>
         </div>
       </div>
     </section>

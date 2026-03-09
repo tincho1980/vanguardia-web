@@ -117,7 +117,7 @@ export default function Hero() {
 
         <button
           onClick={handleStartExperience}
-          className="hover-trigger relative px-8 py-4 border border-vanguard-red text-white text-sm tracking-widest uppercase transition-all duration-300 hover:bg-vanguard-red hover:text-black font-bold group overflow-hidden inline-block"
+          className="hover-trigger relative px-5 sm:px-8 py-3.5 sm:py-4 border border-vanguard-red text-white text-[11px] sm:text-sm tracking-[0.14em] sm:tracking-widest uppercase leading-none whitespace-nowrap transition-all duration-300 hover:bg-vanguard-red hover:text-black font-bold group overflow-hidden inline-flex items-center justify-center"
         >
           <span className="relative z-10 pointer-events-none">
             Cruzar el Portal

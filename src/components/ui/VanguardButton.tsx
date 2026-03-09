@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 
 type VanguardButtonProps = {
+  id?: string;
   children: ReactNode;
   href?: string;
   target?: string;
@@ -13,6 +14,7 @@ type VanguardButtonProps = {
 };
 
 export default function VanguardButton({
+  id,
   children,
   href,
   target,
@@ -22,7 +24,7 @@ export default function VanguardButton({
   inverted = false,
 }: VanguardButtonProps) {
   const commonClasses =
-    "hover-trigger relative px-8 py-4 border text-sm tracking-widest uppercase transition-all duration-300 font-bold group overflow-hidden inline-flex items-center justify-center";
+    "hover-trigger relative px-5 sm:px-8 py-3.5 sm:py-4 border text-[11px] sm:text-sm tracking-[0.14em] sm:tracking-widest uppercase leading-none whitespace-nowrap transition-all duration-300 font-bold group overflow-hidden inline-flex items-center justify-center";
 
   const variantClasses = inverted
     ? "border-vanguard-red bg-vanguard-red text-black hover:border-vanguard-white"
@@ -44,6 +46,7 @@ export default function VanguardButton({
   if (href) {
     return (
       <a
+        id={id}
         href={href}
         target={target}
         rel={rel}
@@ -56,6 +59,7 @@ export default function VanguardButton({
 
   return (
     <button
+      id={id}
       type="button"
       onClick={onClick}
       className={`${commonClasses} ${variantClasses} ${className}`.trim()}
